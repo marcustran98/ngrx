@@ -39,7 +39,5 @@ const _counterReducer = createReducer(
   })
 )
 export function counterReducer(state: any, action: any) {
-  console.log(2, state);
-  console.log('actioon', action);
   return _counterReducer(state, action);
 }
