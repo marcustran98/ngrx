@@ -21,10 +21,6 @@ import { AddComponent } from './posts/add/add.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent,
-    CounterOutputComponent,
-    CounterButtonComponent,
-    CustomCounterInputComponent,
     HomeComponent,
   ],
   imports: [
@@ -32,7 +28,7 @@ import { AddComponent } from './posts/add/add.component';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    StoreModule.forRoot(AppReducer),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production

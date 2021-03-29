@@ -5,12 +5,16 @@ import { CounterComponent } from './counter/counter/counter.component';
 const routes: Routes = [
   {
     path: '',
-    component: CounterComponent
+    loadChildren: () => import('./counter/counter.module').then(module => module.CounterModule)
   },
   {
     path: 'posts',
     loadChildren: () => import('./posts/posts.module').then(module => module.PostsModule)
-  }
+  },
+  {
+    path: 'counter',
+    loadChildren: () => import('./counter/counter.module').then(module => module.CounterModule)
+  },
 ];
 
 @NgModule({

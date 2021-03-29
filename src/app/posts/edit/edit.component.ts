@@ -20,8 +20,12 @@ export class EditComponent implements OnInit {
       map((params: any) => params.get("id")),
     ).subscribe(res => {
       const x = this.store.select(getPostById, res).subscribe((res: any) => {
-        this.model = res;
+        this.model = Object.assign({}, res);
+        console.log('model', this.model);
+
       })
+      x.unsubscribe();
+
     })
     this.addForm = new FormGroup({
       title: new FormControl("", [Validators.required]),
@@ -32,10 +36,11 @@ export class EditComponent implements OnInit {
   }
   updateForm() {
     const postObject: Post = {
-      title: this.addForm.value.title,
-      desc: this.addForm.value.desc,
+      title: this.model.title,
+      desc: this.model.desc,
       id: this.model.id
     }
+    console.log("postObject", postObject)
     this.store.dispatch(updatePosts({ value: postObject }));
   }
 

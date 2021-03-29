@@ -7,6 +7,7 @@ import { postsReducer } from './state/post.reducer';
 import { AddComponent } from './add/add.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { EditComponent } from './edit/edit.component';
+import { StoreModule } from '@ngrx/store';
 
 const postRoutes: Routes = [
     {
@@ -35,6 +36,7 @@ const postRoutes: Routes = [
         CommonModule,
         FormsModule,
         RouterModule.forChild(postRoutes),
+        StoreModule.forFeature("posts", postsReducer),
         ReactiveFormsModule
     ],
     providers: [],

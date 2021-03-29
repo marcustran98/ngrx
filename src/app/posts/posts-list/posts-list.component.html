@@ -7,7 +7,8 @@
         <ul>
             <li *ngFor="let item of posts | async">
                 <span> {{item.title}}</span>
-                <a class="ml-5" (click)="getById(item)">update</a>
+                <a style="margin-left:10px" class="ml-5" (click)="getById(item)">update</a>
+                <a style="margin-left:10px" class="ml-5" (click)="delete(item.id)">delete</a>
             </li>
         </ul>
     </div>

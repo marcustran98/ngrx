@@ -1,16 +1,15 @@
 <form [formGroup]="addForm" (ngSubmit)="updateForm()">
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" formControlName="title" id="exampleFormControlInput1"
-            placeholder="title">
+        <input type="text" class="form-control" formControlName="title" [(ngModel)]="model.title" id="exampleFormControlInput1" placeholder="title">
     </div>
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Desc</label>
-        <input type="text" class="form-control" formControlName="desc" id="exampleFormControlInput1" placeholder="desc">
+        <input type="text" class="form-control" formControlName="desc" [(ngModel)]="model.desc" id="exampleFormControlInput1" placeholder="desc">
     </div>
     <div>
         <button type="submit" class="btn btn-primary">
-            Add Post
+            update Post
         </button>
     </div>
 </form>
