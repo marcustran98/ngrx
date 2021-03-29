@@ -17,7 +17,8 @@ import { HomeComponent } from './home/home/home.component';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { AppReducer } from './store/app.state';
 import { AddComponent } from './posts/add/add.component';
-
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +30,12 @@ import { AddComponent } from './posts/add/add.component';
     CommonModule,
     FormsModule,
     StoreModule.forRoot({}),
+    HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
