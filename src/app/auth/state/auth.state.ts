@@ -1,2 +1,2 @@
 export interface AuthState { }
-const initialAuthState: AuthState = {}
+export const initialAuthStateX: AuthState = {}

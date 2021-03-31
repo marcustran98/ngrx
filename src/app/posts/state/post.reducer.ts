@@ -11,8 +11,6 @@ const _postReducer = createReducer(
         }
     }),
     on(updatePosts, (state: any, data: any) => {
-        console.log(1, state);
-        console.log(2, data);
         const post = state.posts.map((ele: any) => {
             return ele.id == data.value.id ? data.value : ele;
         })
