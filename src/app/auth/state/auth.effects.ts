@@ -1,34 +1,29 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { exhaustMap, map, mergeMap } from "rxjs/operators";
+import { of } from "rxjs";
+import { concatMap, exhaustMap, map, mergeMap, switchMap } from "rxjs/operators";
+import { User } from "src/app/models/Users.model";
 import { AuthService } from "src/app/services/auth.service";
-import { loginStart, loginSuccess } from "./auth.action";
+import { loginStart, loginSuccess, LOGIN_FAIL, logonFail } from "./auth.action";
 @Injectable({
     providedIn: 'root'
 })
 export class AuthEffect {
     constructor(private action$: Actions, private authService: AuthService) {
-
+        console.log(555);
     }
     login$ = createEffect(() => {
         return this.action$.pipe(
             ofType(loginStart),
-            mergeMap((action: any) => {
-                console.log(11, action);
+            switchMap((action: any) => {
                 return this.authService.login(action.email, action.password).pipe(
                     map(data => {
-                        return loginSuccess();
+                        const users = this.authService.formatUser(data);
+                        return loginSuccess({ users });
                     })
                 )
             })
         )
-    })
-    logout = createEffect(() => {
-        return this.action$.pipe(
-            ofType(loginSuccess),
-            map(value => value)
-        )
-    }).subscribe(res => {
-        console.log(5, res);
+
     })
 }

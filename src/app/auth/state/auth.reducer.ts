@@ -4,10 +4,11 @@ import { initialAuthStateX } from "./auth.state";
 
 const _authReducer = createReducer(
     initialAuthStateX,
-    on(loginSuccess, (state: any) => {
-        console.log(111, state);
+    on(loginSuccess, (state: any, data) => {
+        console.log(111, data);
+        localStorage.setItem("token", data.users.token);
         return {
-            ...state
+            ...state,
         }
     })
 )
