@@ -19,17 +19,20 @@ import { AppReducer } from './store/app.state';
 import { AddComponent } from './posts/add/add.component';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingSnipperComponent } from './shared/components/loading-snipper/loading-snipper.component';
+import { SharedReducer } from './store/Shared/shared.reducer';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    LoadingSnipperComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(AppReducer),
     HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,

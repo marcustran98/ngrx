@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Post } from 'src/app/models/posts.model';
 import { addPosts } from 'src/app/posts/state/post.actions';
+import { ShareLoadingState } from 'src/app/store/Shared/shared..actions';
 
 @Component({
   selector: 'app-add',
@@ -26,6 +27,7 @@ export class AddComponent implements OnInit {
       desc: this.addForm.value.desc,
       id: Math.ceil(Math.random() * 100)
     }
+    this.store.dispatch(ShareLoadingState({ status: true }));
     this.store.dispatch(addPosts({ posts: postObject }));
   }
 }
