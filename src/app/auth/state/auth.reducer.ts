@@ -1,3 +1,4 @@
+import { Router, RouterLink } from "@angular/router";
 import { createReducer, on } from "@ngrx/store";
 import { loginStart, loginSuccess } from "./auth.action";
 import { initialAuthStateX } from "./auth.state";
@@ -5,8 +6,7 @@ import { initialAuthStateX } from "./auth.state";
 const _authReducer = createReducer(
     initialAuthStateX,
     on(loginSuccess, (state: any, data) => {
-        console.log(111, data);
-        localStorage.setItem("token", data.users.token);
+        console.log('dispath');
         return {
             ...state,
         }
