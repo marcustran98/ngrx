@@ -1,11 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { of } from "rxjs";
-import { concatMap, exhaustMap, map, mergeMap, switchMap, tap } from "rxjs/operators";
-import { User } from "src/app/models/Users.model";
+import { map, switchMap, tap } from "rxjs/operators";
 import { AuthService } from "src/app/services/auth.service";
-import { loginStart, loginSuccess, LOGIN_FAIL, logonFail } from "./auth.action";
+import { loginDirec, loginStart, loginSuccess, LOGIN_FAIL, logonFail, signupStart } from "./auth.action";
 @Injectable({
     providedIn: 'root'
 })
@@ -23,21 +21,37 @@ export class AuthEffect {
                     return this.authService.login(action.email, action.password).pipe(
                         map(data => {
                             const users = this.authService.formatUser(data);
-                            return loginSuccess({ users })
+                            return loginSuccess({ users });
                         })
                     )
                 })
             )
-        }, { dispatch: false }
+        }
     )
     loginDirect = createEffect(
         () => {
             return this.action$.pipe(
                 ofType(loginSuccess),
                 tap(action => {
+                    console.log('chay vao day');
                     this.router.navigate(['/']);
                 })
             )
         }, { dispatch: false }
+    )
+    signUp = createEffect(
+        () => {
+            return this.action$.pipe(
+                ofType(signupStart),
+                switchMap(res => {
+                    return this.authService.signUp(res.email, res.password).pipe(
+                        map(res => {
+                            const users = res;
+                            return loginSuccess({ users });
+                        })
+                    )
+                })
+            )
+        }
     )
 }

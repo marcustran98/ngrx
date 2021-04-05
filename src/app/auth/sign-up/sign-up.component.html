@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="submitForm()" style="padding: 100px;">
+<form [formGroup]="signUpForm" (ngSubmit)="submitForm()" style="padding: 100px;">
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Email</label>
         <input type="email" class="form-control" formControlName="email" id="exampleFormControlInput1" placeholder="title">
@@ -7,15 +7,15 @@
         <label for="exampleFormControlInput1" class="form-label">Password</label>
         <input type="password" class="form-control" formControlName="password" id="exampleFormControlInput1" placeholder="desc">
     </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirm_password" id="exampleFormControlInput1" placeholder="desc">
+    </div>
     <div>
         <button type="submit" class="btn btn-primary">
-            Login
+            SignUP
         </button>
+        <button type="button" (click)="subjject()">SUBJECT</button>
     </div>
     <br>
-    <div>
-        <button type="submit" class="btn btn-primary" [routerLink]="['/auth/signup']">
-            TO SIGNUP
-        </button>
-    </div>
 </form>
