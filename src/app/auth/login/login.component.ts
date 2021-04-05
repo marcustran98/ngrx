@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { concat, Observable, of } from 'rxjs';
 import { concatMap, exhaust, exhaustMap, map, mergeMap } from 'rxjs/operators';
 import { AppState } from 'src/app/store/app.state';
+import { ShareLoadingState } from 'src/app/store/Shared/shared..actions';
 import { loginStart, loginSuccess } from '../state/auth.action';
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   submitForm() {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
+    this.store.dispatch(ShareLoadingState({ status: true }))
     this.store.dispatch(loginStart({ email, password }));
   }
 }
